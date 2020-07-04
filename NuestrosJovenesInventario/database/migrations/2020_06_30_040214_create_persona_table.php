@@ -14,7 +14,7 @@ class CreatePersonaTable extends Migration
     public function up()
     {
         Schema::create('personas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('apellido');
             $table->string('numero_identificacion')->unique();
@@ -29,6 +29,6 @@ class CreatePersonaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('persona');
+        Schema::dropIfExists('personas');
     }
 }

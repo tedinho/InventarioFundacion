@@ -5,16 +5,20 @@
     <meta charset="UTF-8">
     <title>Nuestros Jovenes</title>
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/inventario.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
 <body>
     @section('sidebar')
-    <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
-        <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
-        <a href="#" class="w3-bar-item w3-button">Link 1</a>
-        <a href="#" class="w3-bar-item w3-button">Link 2</a>
-        <a href="#" class="w3-bar-item w3-button">Link 3</a>
+    <div style="width: 260px !important;display:none" class="w3-sidebar w3-bar-block w3-border-right" id="mySidebar">
+        <button onclick="w3_close()" class="w3-bar-item w3-large">Cerrar Menú &times;</button>
+        <p class="w3-bar-item w3-buttom">Menú Principal</p>
+
+        @foreach ($menuLista as $item)
+        <a href="{{$item->url}}" class="w3-bar-item w3-button"><i class="fas {{$item->icono}}"></i>
+            {{$item->nombre}}</a>
+        @endforeach
     </div>
     @show
     <div class="w3-row" style="background-color: #d8d8d8 !important;">

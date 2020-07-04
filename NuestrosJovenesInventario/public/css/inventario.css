@@ -1,0 +1,33 @@
+.bar-options {
+    float: right;
+    margin-top: 30px;
+}
+
+.col-datos {
+	font-size: 0.9em;
+}
+
+.col-datos .w3-col {
+	padding: 5px;
+}
+
+.col-acciones {
+	padding-top: 5px;
+}
+
+.row-header>.w3-col>.w3-row>.w3-col {
+	padding: 5px;
+}
+
+/* fin radio*/
+.row-header {
+	font-weight: bold;
+	border-top: 2px solid #ddd;
+	border-bottom: 4px solid #466fc6;
+	background: #eee;
+}
+
+.boton-guardar{
+    background-color: #3656bf !important;
+    color: white !important;
+}

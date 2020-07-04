@@ -14,11 +14,11 @@ class CreateUsuarioTable extends Migration
     public function up()
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nombre')->unique();
             $table->string('estado');
             $table->string('clave');
-            $table->integer('id_persona')->unsigned();
+            $table->bigInteger('id_persona')->unsigned();
             $table->foreign('id_persona')->references('id')->on('personas')
                 ->onDelete('cascade');
         });
@@ -31,6 +31,6 @@ class CreateUsuarioTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuario');
+        Schema::dropIfExists('usuarios');
     }
 }
