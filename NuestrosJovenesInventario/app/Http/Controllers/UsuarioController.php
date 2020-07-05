@@ -29,8 +29,39 @@ class UsuarioController extends Controller
     public function getUsuario(Request $request)
     {
         $request->user()->authorizeRoles(['ADMINISTRADOR']);
-        $usuario = new Usuario();
-        return view('admin/usuario-form', $usuario);
+        $data = DB::table('roles')->whereNotIn('id', ['CONEXION'])->get();
+        $roles = $data->pluck('id', 'id');
+        if ($request->get('usuario') != null) {
+            $usuario = $request->get('usuario');
+            $persona = $request->get('persona');
+            return view('admin/usuario-form')->with('roles', $roles)->with('usuario', $usuario)->with('persona', $persona);
+        }
+        return view('admin/usuario-form')->with('roles', $roles);
+    }
+
+    public function inactivar($id)
+    {
+        DB::table('usuarios')
+            ->where('id', $id)
+            ->update(['estado' => 'I']);
+
+        return Redirect::route('usuario-lista')->with('mensaje', 'Usuario Inactivado');
+    }
+
+    public function activar($id)
+    {
+        DB::table('usuarios')
+            ->where('id', $id)
+            ->update(['estado' => 'A']);
+
+        return Redirect::route('usuario-lista')->with('mensaje', 'Usuario Activado');
+    }
+
+    public function editar($id)
+    {
+        $usuario = DB::table('usuarios')->where('id', $id)->first();
+        $persona = DB::table('personas')->where('id', $usuario->id_persona)->first();
+        return Redirect::route('usuario-form', compact('usuario', 'persona'));
     }
 
     public function guardarUsuario(Request $request)
@@ -52,6 +83,22 @@ class UsuarioController extends Controller
                 'id_persona' => $idPersona
             ]
         );
+
+        DB::table('usuario_rol')->insertGetId(
+            [
+                'role_id' => $request->get('rol'),
+                'usuario_id' => $idUsuario
+            ]
+        );
+
+        DB::table('usuario_rol')->insertGetId(
+            [
+                'role_id' => 'CONEXION',
+                'usuario_id' => $idUsuario
+            ]
+        );
+
+
 
         return Redirect::route('usuario-lista')->with('mensaje', 'Usuario Creado');
     }

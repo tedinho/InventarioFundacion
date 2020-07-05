@@ -16,3 +16,8 @@ Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::post('guardarUsuario', 'UsuarioController@guardarUsuario')->name('guardarUsuario');
+
+Route::post('inactivarUsuario/{id}', 'UsuarioController@inactivar')->name('inactivarUsuario');
+Route::post('activarUsuario/{id}', 'UsuarioController@activar')->name('activarUsuario');
+
+Route::get('editarUsuario/{id}', 'UsuarioController@editar')->name('editarUsuario');

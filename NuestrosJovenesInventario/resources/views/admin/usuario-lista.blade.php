@@ -7,7 +7,10 @@
         Nuevo Usuario
     </a>
 </div>
-
+<h1>Administración de usuarios</h1>
+@if(Session::has('mensaje'))
+<div class="alert alert-info">{{session('mensaje')}}</div>
+@endif
 <div class="w3-row">
     <div class="w3-col l2 m2 s12">
         <label for="txt-usuario">Nombre Usuario</label>
@@ -38,7 +41,7 @@
 
 <!-- Cuerpo -->
 @foreach ($usuarios as $u)
-<div class="w3-row bg-#{(cont.index) mod 2}">
+<div class="w3-row bg-{{ $loop->index %  2}}">
     <div class="w3-col s10 m10 l10 col-datos">
         <div class="w3-row">
             <div>
@@ -61,8 +64,19 @@
     </div>
 
     <div class="w3-col s2 m2 l2 col-acciones">
-        <button title="editar"><i class="fas fa-lg fa-edit"></i></button>
-        <button title="inactivar"><i class="fas fa-lg fa-trash w3-text-red"></i></button>
+        <a href="{{url('editarUsuario/'.$u->id)}}" class="w3-button"><i class="fas fa-lg fa-edit"></i></a>
+        @if($u->estado=='A')
+        <form style="display: inline;" action="{{route('inactivarUsuario',['id' => $u->id])}}" method="POST">
+            {{csrf_field()}}
+            <button class="w3-button" title="Inactivar"><i class="fas fa-lg fa-trash w3-text-red"></i></button>
+        </form>
+        @endif
+        @if($u->estado=='I')
+        <form style="display: inline;" action="{{route('activarUsuario',['id' => $u->id])}}" method="POST">
+            {{csrf_field()}}
+            <button class="w3-button" title="Activar"><i class="fas fa-lg fa-check w3-text-green"></i></button>
+        </form>
+        @endif
     </div>
 </div>
 @endforeach

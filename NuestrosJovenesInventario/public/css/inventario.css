@@ -31,3 +31,15 @@
     background-color: #3656bf !important;
     color: white !important;
 }
+
+.bg-0 {
+	background-color: #fff;
+}
+
+.bg-1 {
+	background-color: #eee;
+}
+
+i.botonesLista {
+	color: #009590;
+}
