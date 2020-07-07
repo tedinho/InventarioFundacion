@@ -25,6 +25,12 @@
             <input type="password" class="w3-input w3-border" id="clave" name="clave">
             <br />
             @endif
+            @if (($usuario??''))
+            <input style="display: none;" value="{{$usuario['id']??''}}" type="text" class="w3-input w3-border"
+                id="id_usuario" name="id_usuario">
+            <input style="display: none;" value="{{$persona['id']??''}}" type="text" class="w3-input w3-border"
+                id="id_persona" name="id_persona">
+            @endif
 
 
             <label for="roles">{{'Seleccionar Rol'}}</label><br />

@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\Console\Input\Input;
 
 class UsuarioController extends Controller
 {
@@ -66,38 +67,53 @@ class UsuarioController extends Controller
 
     public function guardarUsuario(Request $request)
     {
-        $idPersona = DB::table('personas')->insertGetId(
-            [
-                'nombre' => $request->get('nombre'),
-                'apellido' => $request->get('apellido'),
-                'numero_identificacion' => $request->get('cedula'),
-                'estado' => 'A'
-            ]
-        );
+        $usuario = $request->get('id_usuario');
+        error_log($usuario);
+        if ($usuario != null) {
+            $persona = $request->get('id_persona');
+            DB::table('personas')
+                ->where('id', $persona)
+                ->update([
+                    'nombre' => $request->get('nombre'),
+                    'apellido' => $request->get('apellido'),
+                    'numero_identificacion' => $request->get('cedula')
+                ]);
+            DB::table('usuarios')
+                ->where('id', $usuario)
+                ->update(['nombre' => $request->get('correo')]);
+        } else {
+            $idPersona = DB::table('personas')->insertGetId(
+                [
+                    'nombre' => $request->get('nombre'),
+                    'apellido' => $request->get('apellido'),
+                    'numero_identificacion' => $request->get('cedula'),
+                    'estado' => 'A'
+                ]
+            );
 
-        $idUsuario = DB::table('usuarios')->insertGetId(
-            [
-                'nombre' => $request->get('correo'),
-                'clave' => md5($request->get('clave')),
-                'estado' => 'A',
-                'id_persona' => $idPersona
-            ]
-        );
+            $idUsuario = DB::table('usuarios')->insertGetId(
+                [
+                    'nombre' => $request->get('correo'),
+                    'clave' => md5($request->get('clave')),
+                    'estado' => 'A',
+                    'id_persona' => $idPersona
+                ]
+            );
 
-        DB::table('usuario_rol')->insertGetId(
-            [
-                'role_id' => $request->get('rol'),
-                'usuario_id' => $idUsuario
-            ]
-        );
+            DB::table('usuario_rol')->insertGetId(
+                [
+                    'role_id' => $request->get('rol'),
+                    'usuario_id' => $idUsuario
+                ]
+            );
 
-        DB::table('usuario_rol')->insertGetId(
-            [
-                'role_id' => 'CONEXION',
-                'usuario_id' => $idUsuario
-            ]
-        );
-
+            DB::table('usuario_rol')->insertGetId(
+                [
+                    'role_id' => 'CONEXION',
+                    'usuario_id' => $idUsuario
+                ]
+            );
+        }
 
 
         return Redirect::route('usuario-lista')->with('mensaje', 'Usuario Creado');
