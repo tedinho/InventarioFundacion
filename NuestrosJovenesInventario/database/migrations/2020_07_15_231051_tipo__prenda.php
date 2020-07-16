@@ -13,7 +13,7 @@ class TipoPrenda extends Migration
      */
     public function up()
     {
-        //
+        
         Schema::create('tipo_prenda', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');

@@ -13,7 +13,7 @@ class Beneficiario extends Migration
      */
     public function up()
     {
-        //
+        
         Schema::create('beneficiario', function (Blueprint $table) {
             $table->bigIncrements('id');
             //$table->date('fecha');
