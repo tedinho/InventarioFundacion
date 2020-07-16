@@ -13,14 +13,13 @@ class Talla extends Migration
      */
     public function up()
     {
-        //
+        
         Schema::create('talla', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('siglas');
             $table->string('nombre');
             $table->string('estado');
         
-            
         });
     }
 

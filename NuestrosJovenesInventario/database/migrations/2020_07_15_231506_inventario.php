@@ -18,7 +18,6 @@ class Inventario extends Migration
             $table->int('cantidad_bodega')->unique();
             $table->date('fecha');
             
-        
             $table->bigInteger('id_prenda')->unsigned();
             $table->foreign('id_prenda')->references('id')->on('prenda')
                 ->onDelete('cascade');

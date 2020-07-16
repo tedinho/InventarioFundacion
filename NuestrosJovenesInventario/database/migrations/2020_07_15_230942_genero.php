@@ -19,7 +19,6 @@ class Genero extends Migration
             $table->string('tipo');
             $table->string('estado');
         
-            
         });
     }
 

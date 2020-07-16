@@ -17,7 +17,6 @@ class Entrega extends Migration
             $table->bigIncrements('id');
             $table->int('cantidad')->unique();
             //$table->date('fecha');
-            
         
             $table->bigInteger('id_prenda')->unsigned();
             $table->foreign('id_prenda')->references('id')->on('prenda')

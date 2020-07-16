@@ -17,8 +17,7 @@ class TipoPrenda extends Migration
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('estado');
-        
-            
+         
         });
     }
 

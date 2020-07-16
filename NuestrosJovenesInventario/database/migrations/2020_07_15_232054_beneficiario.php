@@ -15,9 +15,7 @@ class Beneficiario extends Migration
     {
         Schema::create('beneficiario', function (Blueprint $table) {
             $table->bigIncrements('id');
-            
             //$table->date('fecha');
-            
         
             $table->bigInteger('id_entrega')->unsigned();
             $table->foreign('id_entrega')->references('id')->on('entrega')
