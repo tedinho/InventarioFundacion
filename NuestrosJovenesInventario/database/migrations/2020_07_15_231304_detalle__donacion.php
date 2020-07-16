@@ -16,10 +16,10 @@ class DetalleDonacion extends Migration
         //
         Schema::create('detalle_donacion', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->int('cantidad')->unique();
+            $table->Integer('cantidad')->unique();
             $table->string('estado');
             $table->string('descripcion');
-        
+
             $table->bigInteger('id_prenda')->unsigned();
             $table->foreign('id_prenda')->references('id')->on('prenda')
                 ->onDelete('cascade');

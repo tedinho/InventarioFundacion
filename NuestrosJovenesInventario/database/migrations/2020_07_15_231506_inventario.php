@@ -13,12 +13,12 @@ class Inventario extends Migration
      */
     public function up()
     {
-        
+
         Schema::create('inventario', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->int('cantidad_bodega')->unique();
+            $table->Integer('cantidad_bodega')->unique();
             $table->date('fecha');
-            
+
             $table->bigInteger('id_prenda')->unsigned();
             $table->foreign('id_prenda')->references('id')->on('prenda')
                 ->onDelete('cascade');

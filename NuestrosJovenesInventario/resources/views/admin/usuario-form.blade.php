@@ -38,7 +38,12 @@
             <select name="rol" id="rol" class="w3-select">
                 <option value="" selected disabled>Seleccione</option>
                 @foreach( $roles as $key => $value )
+                @if (($rol??''))
+                <option value="{{ $key }}" {{ ( $key == $rol['role_id']) ? 'selected' : '' }}>{{ $value }}</option>
+                @endif
+                @if (!($rol??''))
                 <option value="{{ $key }}">{{ $value }}</option>
+                @endif
                 @endforeach
             </select>
 

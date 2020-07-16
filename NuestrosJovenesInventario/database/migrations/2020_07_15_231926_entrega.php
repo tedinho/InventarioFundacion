@@ -16,7 +16,7 @@ class Entrega extends Migration
         
         Schema::create('entrega', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->int('cantidad')->unique();
+            $table->Integer('cantidad')->unique();
             //$table->date('fecha');
         
             $table->bigInteger('id_prenda')->unsigned();

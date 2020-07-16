@@ -35,7 +35,8 @@ class UsuarioController extends Controller
         if ($request->get('usuario') != null) {
             $usuario = $request->get('usuario');
             $persona = $request->get('persona');
-            return view('admin/usuario-form')->with('roles', $roles)->with('usuario', $usuario)->with('persona', $persona);
+            $rol = $request->get('rol');
+            return view('admin/usuario-form')->with('roles', $roles)->with('usuario', $usuario)->with('persona', $persona)->with('rol', $rol);
         }
         return view('admin/usuario-form')->with('roles', $roles);
     }
@@ -62,13 +63,15 @@ class UsuarioController extends Controller
     {
         $usuario = DB::table('usuarios')->where('id', $id)->first();
         $persona = DB::table('personas')->where('id', $usuario->id_persona)->first();
-        return Redirect::route('usuario-form', compact('usuario', 'persona'));
+        $rol = DB::table('usuario_rol')->where('usuario_id', $id)->whereNotIn('role_id', ['CONEXION'])->first();
+        return Redirect::route('usuario-form', compact('usuario', 'persona', 'rol'));
     }
 
     public function guardarUsuario(Request $request)
     {
         $usuario = $request->get('id_usuario');
         error_log($usuario);
+        $mensaje = '';
         if ($usuario != null) {
             $persona = $request->get('id_persona');
             DB::table('personas')
@@ -81,6 +84,8 @@ class UsuarioController extends Controller
             DB::table('usuarios')
                 ->where('id', $usuario)
                 ->update(['nombre' => $request->get('correo')]);
+
+            $mensaje = 'Registro Actualizado';
         } else {
             $idPersona = DB::table('personas')->insertGetId(
                 [
@@ -113,9 +118,10 @@ class UsuarioController extends Controller
                     'usuario_id' => $idUsuario
                 ]
             );
+            $mensaje = 'Usuario Creado';
         }
 
 
-        return Redirect::route('usuario-lista')->with('mensaje', 'Usuario Creado');
+        return Redirect::route('usuario-lista')->with('mensaje', $mensaje);
     }
 }
