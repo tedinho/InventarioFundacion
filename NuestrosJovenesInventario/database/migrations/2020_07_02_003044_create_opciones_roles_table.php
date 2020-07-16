@@ -14,7 +14,7 @@ class CreateOpcionesRolesTable extends Migration
     public function up()
     {
         Schema::create('opciones_roles', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('id_rol')->unsigned();
             $table->foreign('id_rol')->references('id')->on('roles')
                 ->onDelete('cascade');
