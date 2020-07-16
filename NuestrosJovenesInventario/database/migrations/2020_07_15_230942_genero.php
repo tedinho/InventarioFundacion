@@ -13,7 +13,7 @@ class Genero extends Migration
      */
     public function up()
     {
-        //
+        
         Schema::create('genero', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('tipo');

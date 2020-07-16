@@ -13,6 +13,7 @@ class Inventario extends Migration
      */
     public function up()
     {
+        //
         Schema::create('inventario', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->int('cantidad_bodega')->unique();

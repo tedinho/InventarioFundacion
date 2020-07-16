@@ -13,7 +13,7 @@ class Donacion extends Migration
      */
     public function up()
     {
-        
+        //
         Schema::create('donacion', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('observacion')->unique();
