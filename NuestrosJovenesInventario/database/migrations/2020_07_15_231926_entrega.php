@@ -13,7 +13,7 @@ class Entrega extends Migration
      */
     public function up()
     {
-        
+        //
         Schema::create('entrega', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->int('cantidad')->unique();

@@ -13,7 +13,7 @@ class DetalleDonacion extends Migration
      */
     public function up()
     {
-        //
+        ///
         Schema::create('detalle_donacion', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->int('cantidad')->unique();
