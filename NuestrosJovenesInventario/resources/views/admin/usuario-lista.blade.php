@@ -11,7 +11,8 @@
 @if(Session::has('mensaje'))
 <div class="alert alert-info">{{session('mensaje')}}</div>
 @endif
-<form method="HEAD">
+<form method="POST" action="{{route('buscar-usuario')}}">
+    {{csrf_field()}}
     <div class="w3-row">
         <div class="w3-col l2 m2 s12">
             <label for="txt-usuario">Nombre Usuario</label>
@@ -58,19 +59,27 @@
         <div class="w3-row">
             <div>
                 <div class="w3-col s6 w3-hide-medium w3-hide-large">Nombre</div>
-                <div class="w3-col l3 m3 s6">{{$u->persona->nombre}} {{$u->persona->apellido}}</div>
+                <div class="w3-col l3 m3 s6">
+                    <p>{{$u->persona->nombre}} {{$u->persona->apellido}}</p>
+                </div>
             </div>
             <div>
                 <div class="w3-col s6 w3-hide-medium w3-hide-large">Número de documento</div>
-                <div class="w3-col l3 m3 s6">{{$u->persona->numero_identificacion}}</div>
+                <div class="w3-col l3 m3 s6">
+                    <p>{{$u->persona->numero_identificacion}}</p>
+                </div>
             </div>
             <div>
                 <div class="w3-col s6 w3-hide-medium w3-hide-large">Nombre Usuario</div>
-                <div class="w3-col l3 m3 s6">{{$u->nombre}}</div>
+                <div class="w3-col l3 m3 s6">
+                    <p>{{$u->nombre}}</p>
+                </div>
             </div>
             <div>
                 <div class="w3-col s6 w3-hide-medium w3-hide-large">Estado</div>
-                <div class="w3-col l3 m3 s6">{{$u->estado}}</div>
+                <div class="w3-col l3 m3 s6">
+                    <p>{{$u->estado}}</p>
+                </div>
             </div>
         </div>
     </div>

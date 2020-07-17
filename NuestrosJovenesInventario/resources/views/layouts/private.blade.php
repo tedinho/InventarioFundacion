@@ -16,7 +16,7 @@
         <p class="w3-bar-item w3-buttom">Menú Principal</p>
 
         @foreach ($menuLista as $item)
-        <a href="{{$item->url}}" class="w3-bar-item w3-button"><i class="fas {{$item->icono}}"></i>
+        <a href="/{{$item->url}}" class="w3-bar-item w3-button"><i class="fas {{$item->icono}}"></i>
             {{$item->nombre}}</a>
         @endforeach
     </div>

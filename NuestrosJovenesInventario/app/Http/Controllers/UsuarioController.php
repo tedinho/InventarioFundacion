@@ -15,6 +15,10 @@ use Symfony\Component\Console\Input\Input;
 class UsuarioController extends Controller
 {
 
+    public $lista;
+
+    public $numeroPaginado = 10;
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,14 +27,14 @@ class UsuarioController extends Controller
     public function inicio(Request $request)
     {
         $request->user()->authorizeRoles(['ADMINISTRADOR']);
+        $lista['usuarios'] = Usuario::paginate($this->numeroPaginado);
+        return view('admin/usuario-lista', $lista);
+    }
+    public function buscar(Request $request)
+    {
         $nombre = $request->get('txt-usuario');
-        $datos['usuarios'] = null;
-        if ($nombre != null) {
-            $datos['usuarios'] = Usuario::where('nombre', 'like', "%$nombre%")->paginate(10);
-        } else {
-            $datos['usuarios'] = Usuario::paginate(10);
-        }
-        return view('admin/usuario-lista', $datos);
+        $lista['usuarios'] = Usuario::where('nombre', 'like', "%$nombre%")->paginate($this->numeroPaginado);
+        return view('admin/usuario-lista', $lista);
     }
 
     public function getUsuario(Request $request)
