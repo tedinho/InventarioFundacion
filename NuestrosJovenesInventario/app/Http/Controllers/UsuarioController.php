@@ -23,7 +23,13 @@ class UsuarioController extends Controller
     public function inicio(Request $request)
     {
         $request->user()->authorizeRoles(['ADMINISTRADOR']);
-        $datos['usuarios'] = Usuario::paginate(10);
+        $nombre = $request->get('txt-usuario');
+        $datos['usuarios'] = null;
+        if ($nombre != null) {
+            $datos['usuarios'] = Usuario::where('nombre', 'like', "%$nombre%")->paginate(10);
+        } else {
+            $datos['usuarios'] = Usuario::paginate(10);
+        }
         return view('admin/usuario-lista', $datos);
     }
 

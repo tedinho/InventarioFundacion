@@ -25,10 +25,10 @@
         <div class="w3-col m1 l1 s1">
             <button class="w3-button w3-xlarge" onclick="w3_open()">☰</button>
         </div>
-        <div class="w3-col m8 l8 s12">
+        <div class="w3-col m4 l8 s3">
             <img style="width: 8%;padding: 5px 0px;" src="{{ asset('img/logoGris.png') }}" alt="">
         </div>
-        <div class="w3-col m3 l3 s12">
+        <div class="w3-col m7 l3 s8">
             <form method="POST" action="{{route('logout')}}" style="margin-left: 75%;margin-top: 8px;">
                 {{csrf_field()}}
                 <button class="btn btn-danger"><i class="fas fa-sign-in-alt"></i> Salir</button>
