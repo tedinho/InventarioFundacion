@@ -52,7 +52,7 @@
 </div>
 @endif
 
-<!-- Cuerpo -->
+<!-- Cuerpo -c-->
 @foreach ($talla as $t)
 <div class="w3-row bg-{{ $loop->index %  2}}">
     <div class="w3-col s10 m10 l10 col-datos">

@@ -11,7 +11,6 @@
 @if(Session::has('mensaje'))
 <div class="alert alert-info">{{session('mensaje')}}</div>
 @endif
-
 <form method="POST" action="{{route('buscar-genero')}}">
     {{csrf_field()}}
     <div class="w3-row">
@@ -34,7 +33,7 @@
 </div>
 @endif
 
-<!-- encabezado -->
+<!-- Encabezado -->
 @if ($genero->isNotEmpty())
 <div layout="block" class="w3-row row-header">
     <div class="w3-col s10 m10 l10">

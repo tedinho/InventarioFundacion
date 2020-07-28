@@ -83,7 +83,7 @@ class TallaController extends Controller
                     return redirect()->route('talla-lista')->with('error', 'Error en server.');
                 }
             }else{
-                return redirect()->back()->with('error', 'Error no se creo la, ya existe un registro con el mismo .');
+                return redirect()->back()->with('error', 'Error no se creo la Talla, ya existe un registro con el mismo .');
 
             }
             

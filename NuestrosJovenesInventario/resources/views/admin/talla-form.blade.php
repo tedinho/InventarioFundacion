@@ -15,9 +15,9 @@
     <br />
     
     @if (($talla??''))
-            <input style="display: none;" value="{{$talla['id']??''}}" type="text" class="w3-input w3-border"
-                id="id_talla" name="id_talla" >
-            @endif
+    <input style="display: none;" value="{{$talla['id']??''}}" type="text" class="w3-input w3-border"
+    id="id_talla" name="id_talla" >
+    @endif
 
     <label for="nombre">{{'Nombre'}}</label><br />
     <input required="true" value="{{$talla['nombre']??''}}" type="text" class="w3-input w3-border" 

@@ -8,6 +8,7 @@
     <div class="w3-container w3-half">
     {{ csrf_field() }}
     <h3> Resgistrar Genero</h3>
+    
     @if (($genero??''))
     <input style="display: none;" value="{{$genero['id']??''}}" type="text" class="w3-input w3-border"
     id="id_genero" name="id_genero" >
