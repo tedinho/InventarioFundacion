@@ -40,3 +40,25 @@ Route::post('activarTipoPrenda/{id}', 'PrendaController@activar')->name('activar
 
 Route::get('editarTipoPrenda/{id}', 'PrendaController@editarTipoPrenda')->name('editarTipoPrenda');
 Route::post('admin/tipo-prenda-lista', 'PrendaController@buscar')->name('buscar-tipo-prenda');
+
+//CRUD TALLAS
+Route::get('admin/talla-lista', 'TallaController@getTallas')->name('talla-lista');
+Route::get('admin/talla-form', 'TallaController@getTallaForm')->name('talla-form');
+Route::post('guardarTalla', 'TallaController@guardarTalla')->name('guardarTalla');
+
+Route::post('inactivartalla/{id}', 'TallaController@inactivar')->name('inactivarTalla');
+Route::post('activartalla/{id}', 'TallaController@activar')->name('activarTalla');
+
+Route::get('editarTalla/{id}', 'TallaController@editarTalla')->name('editarTalla');
+Route::post('admin/talla-lista', 'TallaController@buscar')->name('buscar-talla');
+
+//CRUD GENERO
+Route::get('admin/genero-lista', 'GeneroController@getGenero')->name('genero-lista');
+Route::get('admin/genero-form', 'GeneroController@getGeneroForm')->name('genero-form');
+Route::post('guardarGenero', 'GeneroController@guardarGenero')->name('guardarGenero');
+
+Route::post('inactivarGenero/{id}', 'GeneroController@inactivar')->name('inactivarGenero');
+Route::post('activarGenero/{id}', 'GeneroController@activar')->name('activarGenero');
+
+Route::get('editarGenero/{id}', 'GeneroController@editarGenero')->name('editarGenero');
+Route::post('admin/genero-lista', 'GeneroController@buscar')->name('buscar-genero');
